@@ -15,6 +15,21 @@ import java.net.*;
  * - 서버
  * P2P : 클라이언트 프로그램 서버 작동 -> 게임(방마다 서버 따로 두고 처리)
  * 멀티
+ * 
+ * 클라이언트 : 소켓 생성, 
+ * accpet() 메소드 접속 시도
+ * Input/Output Stream 통한 통신
+ * close() 메소드 
+ * 서버 : 교환소켓 생성
+ * /*
+	 * 클라이언트에서 요청, 처리, 출력
+	 * 클라이언트 : 요청, 출력
+	 * 서버 : 요청 처리 -> 모든 클라이언트가 데이터를 공유해야하므로 서버에서 요청을 처리하는 것
+	 * ** 클라이언트에서 로그인, 로그아웃, 장바구니 등의 요청 -> 서버에서 id/pw 등의 요청 데이터 받음
+	 
+	오라클서버  :  OutputStream, BufferedReader -> PreparedStatement에 포함
+	웹 서버 : OutputStream -> HttpServletRequest
+	 		BufferedReader -> HttpServletResponse
  */
 
 public class ChatServer implements Runnable{
@@ -42,7 +57,6 @@ public class ChatServer implements Runnable{
 		try{
 			ss=new ServerSocket(PORT); //default 포트 생성 : 50(50명까지만 접근 가능) -> 인트라넷(사내)에서 사용
 			//new ServerSocket(PORT,100) -> 100명까지 접근 가능
-				//실행되는 메소드 -> bind(IP,PORT) : 개통, listen() 대기
 			System.out.println("Server Start...");
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());

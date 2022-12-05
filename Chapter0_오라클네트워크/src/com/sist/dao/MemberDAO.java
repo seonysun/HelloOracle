@@ -14,7 +14,7 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-						//ojdbc8.jar 라이브러리에 존재하는 클래스 호출
+						//ojdbc8.jar 라이브러리에 존재하는 OracleDriver 클래스의 클래스객체 생성
 		} catch(Exception ex) {}
 	}
 	//오라클 연결
@@ -33,14 +33,14 @@ public class MemberDAO {
 	}
 	
 	//기능 -로그인
-	public String isLogin(String id,String pwd) {
+	public String isLogin(String id, String pwd) {
 		String result="";
 		try {
 			getConnection();
 			//SQL 문장 제작, 전송
 			String sql="SELECT COUNT(*) FROM member WHERE id='"+id+"'";
 															//오라클 문법이므로 '' 줘야 함
-						//id를 가진 member의 갯수 찾기
+						//해당되는 id 가진 member의 갯수 찾기
 			ps=conn.prepareStatement(sql);
 			//실행결과 저장
 			ResultSet rs=ps.executeQuery();
@@ -50,7 +50,7 @@ public class MemberDAO {
 				result="NOID";
 			} else {
 				sql="SELECT pwd,name FROM member WHERE id='"+id+"'";
-					//해당되는 id의 member의 pwd와 name 찾기
+					//해당되는 id 가진 member의 pwd와 name 찾기
 				ps=conn.prepareStatement(sql);
 				rs=ps.executeQuery();
 				rs.next();

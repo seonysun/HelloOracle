@@ -49,7 +49,7 @@ public class ChatClient extends JFrame implements ActionListener,Runnable{
 			name=JOptionPane.showInputDialog("이름 입력:");
 			//서버 연결
 			try {
-				s=new Socket("211.63.89.99",3355); //서버 연결
+				s=new Socket("localhost",3355); //서버 연결
 				in=new BufferedReader(new InputStreamReader(s.getInputStream())); //서버로부터 값 받기
 				out=s.getOutputStream(); //서버로 전송
 			} catch(Exception ex) {}
