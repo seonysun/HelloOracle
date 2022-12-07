@@ -1,5 +1,3 @@
-
-
 /*
  * 1. Single Thread : 동기화
  * 		- A 종료 후 B 동작
