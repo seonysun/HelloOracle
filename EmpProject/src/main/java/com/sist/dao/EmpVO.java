@@ -1,16 +1,4 @@
 package com.sist.dao;
-//사원 1명에 대한 데이터 브라우저로 전송 -> 변수
-//오라클의 데이터형과 자바의 데이터형 매칭시켜야 함
-/* 
-empno NUMBER -> int
-ename VARCHAR2 -> String
-job VARCHAR2 -> String
-mgr NUMBER -> int
-hiredate DATE -> java.util.Date
-sal NUMBER -> int
-comm NUMBER -> int
-deptno NUMBER -> int
-*/
 import java.util.*;
 
 public class EmpVO {

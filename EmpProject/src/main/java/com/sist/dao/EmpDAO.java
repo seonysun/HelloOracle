@@ -6,9 +6,6 @@ public class EmpDAO {
 	private Connection conn; //오라클 연결
 	private PreparedStatement ps; //SQL 문장 전송
 	private final String URL="jdbc:oracle:thin:@localhost:1521:XE"; //오라클 주소 연결
-							//java database connection -> 여러 업체(ex.oracle)의 드라이버 연결하는 라이브러리
-							//thin 드라이브 : 연결만 하는 드라이브
-							//XE : 오라클 데이터베이스 폴더 이름
 	//드라이버 등록
 	public EmpDAO() {
 		try {
