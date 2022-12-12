@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" import="com.sist.dao.*,java.util.*"%>
-<%
-LocationDAO dao=new LocationDAO();
-ArrayList<LocationVO> list=dao.locationListData();%>
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>

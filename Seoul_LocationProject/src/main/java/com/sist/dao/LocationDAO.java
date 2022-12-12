@@ -75,4 +75,28 @@ public class LocationDAO {
 		}
 		return list;
 	}
+	public ArrayList<ZipcodeVO> postfind(){
+		ArrayList<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
+		try {
+			getConnection();
+			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,'&nbsp;') FROM zipcode WHERE dong LIKE '%서초%'";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ZipcodeVO vo=new ZipcodeVO();
+				vo.setZipcode(rs.getString(1));
+				vo.setSido(rs.getString(2));
+				vo.setGugun(rs.getString(3));
+				vo.setDong(rs.getString(4));
+				vo.setDong(rs.getString(5));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return list;
+	}
 }
