@@ -13,7 +13,6 @@ import com.sist.dao.BoardVO;
 @WebServlet("/BoardInsert")
 public class BoardInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -60,7 +59,6 @@ public class BoardInsert extends HttpServlet {
 		 out.println("</body>");
 		 out.println("</html>");
 	}
-	// 처리 
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,6 +83,7 @@ public class BoardInsert extends HttpServlet {
 		 System.out.println("제목:"+subject);
 		 System.out.println("내용:"+content);
 		 System.out.println("비번:"+pwd);*/
+		 
 		 BoardVO vo=new BoardVO();
 		 vo.setName(name);
 		 vo.setSubject(subject);
@@ -98,6 +97,4 @@ public class BoardInsert extends HttpServlet {
 		 // 이동 => BoardList
 		 response.sendRedirect("BoardList");
 	}
-	
-
 }

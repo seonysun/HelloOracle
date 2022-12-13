@@ -11,20 +11,19 @@ import com.sist.dao.*;
 @WebServlet("/BoardDetail")
 public class BoardDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    // 서버에 의해서 자동으로 호출되는 메소드 
-	// 사용자  요청을 했을때 마다 호출 
+    //서버에 의해 자동으로 호출되는 메소드(사용자 요청시마다)
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 사용자가 보내준 데이터를 받는다.
+		//1. 사용자 전송 데이터 수신
 		String no=request.getParameter("no");
-		//2. 변환코드 -> 자바를 실행하고 어떤 파일을 브라우저에 전송할 것인지 설정
-		//html : text/html ,xml : text/xml ,json " text/plain
+		//2. 변환코드; 자바 실행하고 어떤 파일 브라우저에 전송할 것인지 설정
+			//html : text/html, xml : text/xml, json : text/plain
 		response.setContentType("text/html;charset=UTF-8"); //html안에 한글을 포함
 		//3. 사용자 브라우저에서 읽어갈 수 있게 메모리 위치 지정
 		PrintWriter out=response.getWriter();
-		//4. 오라클에서 데이터를 가지고 온다
+		//4. 오라클에서 데이터 가져옴
 		BoardDAO dao=new BoardDAO();
 		BoardVO vo=dao.boardDetailData(Integer.parseInt(no));
-		out.println("<html>");
+		 out.println("<html>");
 		 out.println("<head>");
 		 out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\">");
 		 out.println("<style>");
@@ -76,5 +75,4 @@ public class BoardDetail extends HttpServlet {
 		 out.println("</body");
 		 out.println("</html");
 	}
-
 }

@@ -8,19 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import com.sist.dao.*;
+
 @WebServlet("/BoardList")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//////////////////////////// 오라클 연결 => 데이터 읽기
+		//오라클 연결 => 데이터 읽기
 		BoardDAO dao=new BoardDAO();
 		ArrayList<BoardVO> list=dao.boardListData();
-		//////////////////////////////////////////////////
 		
-		 response.setContentType("text/html;charset=UTF-8");
-		 PrintWriter out=response.getWriter();
-		 
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		 out.println("<html>");
 		 out.println("<head>");
 		 out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\">");
@@ -49,10 +47,8 @@ public class BoardList extends HttpServlet {
 		 out.println("<th class=text-center width=20%>작성일</th>");
 		 out.println("<th class=text-center width=10%>조회수</th>");
 		 out.println("</tr>");
-		 ////////////////////////////////////// Data 출력 위치
-		 for(BoardVO vo:list)
-		 {
-			 
+		 //Data 출력 위치
+		 for(BoardVO vo:list) {
 			 out.println("<tr>");
 			 out.println("<td class=text-center width=10%>"+vo.getNo()+"</td>");
 			 out.println("<td width=45%><a href=BoardDetail?no="+vo.getNo()+">"+vo.getSubject()+"</td>");
@@ -60,16 +56,11 @@ public class BoardList extends HttpServlet {
 			 out.println("<td class=text-center width=20%>"+vo.getDbday()+"</td>");
 			 out.println("<td class=text-center width=10%>"+vo.getHit()+"</td>");
 			 out.println("</tr>");
-			 
 		 }
-		 //////////////////////////////////////
 		 out.println("</table>");
 		 out.println("</div>");
 		 out.println("</div>");
 		 out.println("</body>");
 		 out.println("</html>");
-		 
-		 
 	}
-
 }

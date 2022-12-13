@@ -47,7 +47,7 @@
             - 정확하게는 제약조건은 아님 -> CONSTRAINT 사용하지 않음
     3) 관계연산 : 테이블 간 연산
 
-2. CREATE : 생성
+2. CREATE : 테이블의 구조 생성
     - CREATE TABLE table_name : 파일
     - CREATE VIEW view_name : 가상 테이블(읽기 전용)
     - CREATE INDEX index_name : ORDER BY -> 속도 최적화
