@@ -1,4 +1,3 @@
-//오류 나는디요? 아마 커밋을 안해서 그런가 싶은데 커밋은 어케 날리는..?
 package com.sist.dao;
 import java.util.*;
 import java.sql.*;
@@ -28,18 +27,18 @@ public class StudentDAO {
 	public void studentInsert(StudentVO vo) {
 		try {
 			getConnection();
-			String sql="INSERT INTO student VALUES(SELECT NVL(MAX(hakbun)+1,1),?,?,?,?)";
+			String sql="INSERT INTO student VALUES("
+					+ "(SELECT NVL(MAX(hakbun)+1,1) FROM student),?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setInt(2, vo.getKor());
 			ps.setInt(3, vo.getEng());
 			ps.setInt(4, vo.getMath());
 			ps.executeUpdate();
-				//INSERT, UPDATE, DELETE 실행 -> executeUpdate() -> COMMIT 필요
-				//SELECT -> executeQuery() -> AUTO COMMIT
-			
+				//INSERT, UPDATE, DELETE -> executeUpdate() : COMMIT 포함
+			   	//SELECT -> executeQuery() : COMMIT 미포함(필요없음)
 		} catch(Exception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace();//오류 확인
 		} finally {
 			disConnection();
 		}
@@ -65,6 +64,7 @@ public class StudentDAO {
 				vo.setAvg(rs.getDouble(7));
 				list.add(vo);
 			}
+			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {

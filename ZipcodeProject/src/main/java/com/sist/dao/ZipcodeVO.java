@@ -34,6 +34,9 @@ public class ZipcodeVO {
 		this.bunji = bunji;
 	}
 	public String getAddress() {
-		return sido+" "+gugun+" "+dong+" "+bunji;
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

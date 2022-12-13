@@ -47,14 +47,14 @@
             - 정확하게는 제약조건은 아님 -> CONSTRAINT 사용하지 않음
     3) 관계연산 : 테이블 간 연산
 
-2. CREATE : 테이블, 뷰, 인덱스, 시퀀스, 함수, 트리거 생성
-    - CREATE TABLE table_name
-    - CREATE VIEW view_name
-    - CREATE INDEX index_name
-    - CREATE SEQUENCE seq_name
-    - CREATE FUNCTION func_name
-    - CREATE PROCEDURE proc_name
-    - CREATE TRIGGER trig_name
+2. CREATE : 생성
+    - CREATE TABLE table_name : 파일
+    - CREATE VIEW view_name : 가상 테이블(읽기 전용)
+    - CREATE INDEX index_name : ORDER BY -> 속도 최적화
+    - CREATE SEQUENCE seq_name : 자동 증가번호
+    - CREATE FUNCTION func_name : 리턴형이 있는 함수(내장함수)
+    - CREATE PROCEDURE proc_name : 리턴형이 없는 함수(기능 가진 함수) PL/SQL(*)
+    - CREATE TRIGGER trig_name : 이벤트(자동화 처리)
     - AUTO COMMIT 
         -> COMMIT 테이블 생성시 불필요, 데이터가 들어갈 때만 필요
     1) 기존 테이블 복사
@@ -68,9 +68,8 @@
           WHERE 1=2;(false 조건)
     3) 사용자 정의
         - CREATE TABLE table_name
-            컬럼명 데이터형 [제약조건],
+            컬럼명 데이터형 [제약조건], ..
                             //컬럼레벨(컬럼과 동시에 생성)
-            컬럼명 데이터형 [제약조건],
             [제약조건]
               //테이블레벨(테이블 생성 후 생성)
         - 보통 NOT NULL, DEFAULT만 컬럼레벨로 제시, 나머지 테이블레벨로 제시

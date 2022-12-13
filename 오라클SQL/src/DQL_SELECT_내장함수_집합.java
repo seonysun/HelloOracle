@@ -24,6 +24,7 @@
 //SELECT COUNT(comm),COUNT(mgr),COUNT(*) FROM emp;
 //SELECT SUM(sal) "합",ROUND(AVG(sal),2) "평균" FROM emp;
 //SELECT MAX(sal),MIN(sal) FROM emp;
+//
 //SELECT ename,hiredate,sal,RANK() OVER(ORDER BY sal DESC) rank
 //FROM emp;
 //SELECT ename,hiredate,sal,DENSE_RANK() OVER(ORDER BY sal) rank
@@ -45,9 +46,10 @@
 //FROM emp
 //WHERE deptno=30;
 //*/
-//SELECT TO_CHAR(hiredate,'YYYY') 입사년도, COUNT(*) 인원수, SUM(sal) 급여평균, MAX(sal) 최대급여, MIN(sal) 최소급여
+//SELECT TO_CHAR(hiredate,'YYYY') 입사년도,COUNT(*) 인원수,MAX(sal),MIN(sal)
 //FROM emp
 //GROUP BY TO_CHAR(hiredate,'YYYY')
+//HAVING COUNT(*)>=1
 //ORDER BY TO_CHAR(hiredate,'YYYY');
 public class DQL_SELECT_내장함수_집합 {
 

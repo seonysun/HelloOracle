@@ -36,7 +36,7 @@ public class LocationDAO {
 		} catch(Exception ex) {}
 	}
 	//SQL 쿼리 문장(기능)
-	public ArrayList<LocationVO>  locationListData(){
+	public ArrayList<LocationVO> locationListData(){
 		ArrayList<LocationVO> list=new ArrayList<LocationVO>();
 		try {
 			//오라클 연결
@@ -54,14 +54,14 @@ public class LocationDAO {
 			//결과값 저장
 			while(rs.next()) {
 				LocationVO vo=new LocationVO();
-				vo.setNo(rs.getInt(1));
+				vo.setNo(rs.getInt("no"));
 							/* 문자열 : getString()
  							   정수 : getInt()
 							   실수 : getDouble()
   							   날짜 : getDate() */
-				vo.setTitle(rs.getString(2));
-				vo.setPoster(rs.getString(3));
-				vo.setMsg(rs.getString(4));
+				vo.setTitle(rs.getString("title"));
+				vo.setPoster(rs.getString("poster"));
+				vo.setMsg(rs.getString("msg"));
 							//컬럼 수보다 적게 받아오는 것도 가능
 				list.add(vo);
 			}
@@ -79,7 +79,9 @@ public class LocationDAO {
 		ArrayList<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
 		try {
 			getConnection();
-			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,'&nbsp;') FROM zipcode WHERE dong LIKE '%서초%'";
+			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
+					+ "FROM zipcode "
+					+ "WHERE dong LIKE '%서초%'";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
@@ -88,7 +90,7 @@ public class LocationDAO {
 				vo.setSido(rs.getString(2));
 				vo.setGugun(rs.getString(3));
 				vo.setDong(rs.getString(4));
-				vo.setDong(rs.getString(5));
+				vo.setBunji(rs.getString(5));
 				list.add(vo);
 			}
 			rs.close();

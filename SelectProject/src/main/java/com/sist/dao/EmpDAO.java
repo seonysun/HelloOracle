@@ -135,7 +135,7 @@ public class EmpDAO {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, ename);
 			ResultSet rs=ps.executeQuery();
-			rs.next();
+			rs.next(); //커서 위치 이동 -> 맨 앞으로
 				//1명에 대한 정보이므로 반복문 필요하지 않음
 			vo.setEmpno(rs.getInt(1));
 			vo.setEname(rs.getString(2));
