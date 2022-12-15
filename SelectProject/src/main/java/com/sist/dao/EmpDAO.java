@@ -26,7 +26,7 @@ import java.sql.*;
  *      -----------------------
  *              EOF 
  *      -----------------------
- *      | 커서위치 
+ *      | 커서위치 (결과값 저장한 직후 커서 위치는 데이터 바깥 -> 데이터 안쪽으로 옮겨서 읽어야 함)
  */
 public class EmpDAO {
 	private Connection conn;

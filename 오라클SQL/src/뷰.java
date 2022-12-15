@@ -32,7 +32,6 @@
                   SQLPLUS system/happy
                   GRANT CREATE view TO hr; --권한부여
                   REVOKE CREATE view TO hr; --권한해제
-                     
         cf. 오라클에 저장된 데이터 확인 : tab, user_views, user_constraints
     - View 내용 확인
     	SELECT text FROM user_views WHERE view_name='대문자';

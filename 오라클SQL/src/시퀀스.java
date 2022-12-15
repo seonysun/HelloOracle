@@ -1,25 +1,26 @@
 /*
 3. SEQUENCE : 자동 증가번호
-    - 중간 번호 삭제 시 번호 수정 없음, 무조건 증가
-    - 수정/삭제 시 문제 발생 방지 위함(중복 번호 없도록 설정)
-        cf. 중복 불가한 데이터
-            : 테이블명, 컬럼명, 뷰명, 시퀀스명, 제약조건명
     - 게시물 번호, 댓글 번호, 장바구니 갯수 등
-    - MAXVALUE : 최종값
-    - MINVALUE : 시작값
-    - START WITH : 시작 위치 설정
-        ex. START WITH 100 -> 100부터 시작
-    - INCREMENT BY : 증가 간격 설정
-        ex. INCREMENT BY 1 -> 1씩 증가
-    - CACHE / NOCACHE
-        - 주로 NOCACHE 사용
-        - CACHE : 미리 일정 범위 번호 저장 후 설정
-    - CYCLE / NOCYCLE
-        - 주로 NOCYCLE 사용
-        - CYCLE : 설정된 범위가 모두 사용되었을 경우 다시 처음부터 시작
-    - 현재값 읽기 : CURRVAL
-      다음값 읽기 : NEXTVAL
-    - 사용방법
+    - 수정/삭제 시 문제 발생 방지 위함(중복 번호 없도록 설정)
+    	-> 중간 번호 삭제 시 번호 수정 없음, 무조건 증가
+    cf. 중복 불가한 데이터 : 테이블명, 컬럼명, 뷰명, 시퀀스명, 제약조건명
+    1) 키워드
+	    - MAXVALUE : 최종값
+	    - MINVALUE : 시작값
+	    - START WITH : 시작 위치 설정
+	        ex. START WITH 100 -> 100부터 시작
+	    - INCREMENT BY : 증가 간격 설정
+	        ex. INCREMENT BY 1 -> 1씩 증가
+	    - CACHE / NOCACHE
+	        - 주로 NOCACHE 사용
+	        - CACHE : 미리 일정 범위 번호 저장 후 설정
+                ex. 1~20 설정 후 1부터 저장
+	    - CYCLE / NOCYCLE
+	        - 주로 NOCYCLE 사용
+	        - CYCLE : 설정된 범위가 모두 사용되었을 경우 다시 처음부터 시작
+	    - 현재값 읽기 : CURRVAL
+	      다음값 읽기 : NEXTVAL
+    2) 사용방법
         - 생성
             CREATE SEQUENCE seq_name
             START WITH num
