@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="java.util.*,com.sist.dao.*"%>
-<%
-String fno=request.getParameter("fno");
-FoodDAO dao=new FoodDAO();
-FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
-%>
+	<%
+	String fno=request.getParameter("fno");
+	FoodDAO dao=new FoodDAO();
+	FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@ h1{
 				}
 				%>
 				</tr>
-				</table>
+			</table>
 		</div>
 		<div style="height: 20px"></div>
 		<div class="col-sm-8">

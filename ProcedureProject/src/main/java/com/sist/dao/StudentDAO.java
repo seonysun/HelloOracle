@@ -10,6 +10,7 @@ public class StudentDAO {
 	private CallableStatement cs; //프로시저 호출 시 사용하는 클래스
 								  //일반 SQL문장 호출 시 PreparedStatement
 	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+		//드라이버 : thin(무료, 오라클과 연결만 담당), oci(유료, 오라클의 모든 데이터 드라이버에 저장 후 시작)
 	public StudentDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

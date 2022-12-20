@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="java.util.*,com.sist.dao.*"%>
-<% //자바 코딩하는 위치
-FoodDAO dao=new FoodDAO();
-String strPage=request.getParameter("page");
-				//웹에서는 스캐너 사용할 수 없으므로 선택값 가져오도록 설정
-if(strPage==null)//첫번째 수행(선택 전)
-	strPage="1";
-int totalpage=dao.foodTotalPage();
-int curpage=Integer.parseInt(strPage);
-ArrayList<FoodVO> list=dao.foodListData(curpage);
-%>
+	<% //자바 코딩하는 위치
+	FoodDAO dao=new FoodDAO();
+	String strPage=request.getParameter("page");
+					//웹에서는 스캐너 사용할 수 없으므로 선택값 가져오도록 설정
+	if(strPage==null)//첫번째 수행(선택 전)
+		strPage="1";//디폴트값 설정
+	int totalpage=dao.foodTotalPage();
+	int curpage=Integer.parseInt(strPage);
+	ArrayList<FoodVO> list=dao.foodListData(curpage);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,15 +36,15 @@ h1{
 		for(FoodVO vo:list){
 		%>
 		<div class="col-md-3">
-    <div class="thumbnail">
-      <a href="detail.jsp?fno=<%=vo.getFno()%>">
-        <img src="<%=vo.getPoster() %>" alt="Lights" style="width:100%">
-        <div class="caption">
-          <p><%=vo.getName() %></p>
-        </div>
-      </a>
-    </div>
-  </div>
+	    <div class="thumbnail">
+	      <a href="detail.jsp?fno=<%=vo.getFno()%>">
+	        <img src="<%=vo.getPoster() %>" alt="Lights" style="width:100%">
+	        <div class="caption">
+	          <p><%=vo.getName() %></p>
+	        </div>
+	      </a>
+	    </div>
+	    </div>
 		<%	
 		}
 		%>
