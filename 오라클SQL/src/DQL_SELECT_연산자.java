@@ -33,7 +33,8 @@
                       IN 연산자 대체 가능
             cf. & : 입력값 받을 때 Scanner
                || : 문자열 결합
-    - 대입연산자 : = (WHERE, HAVING에서는 비교연산자, 그 외의 장소에서는 대입연산자)
+    - 대입연산자 : WHERE, HAVING에서는 비교연산자, 그 외의 장소에서는 대입연산자
+    			=, :=
     - NOT 연산자 : NOT LIKE, NOT BETWEEN, NOT IN
     - NULL 연산자 : 값이 존재하지 않음 -> 연산처리 불가
     - IN 연산자 : OR가 여러개일 경우 처리하는 연산자
@@ -46,7 +47,7 @@
                         '%A%' : A가 포함된 모든 문자열(contains)
                 _ : 한글자
                     ex. __A__ : 총 5글자, 가운데 문자 A
-                        __A%
+                        __A% : 3번째 글자가 A
                 REGEXP_LIKE : 정규식 -> 최근에는 패턴 주로 사용
                     ex. WHERE REGEXP_LIKE(name,'[A-E]')
 */

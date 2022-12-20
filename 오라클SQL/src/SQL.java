@@ -38,7 +38,7 @@
                     cc 1234 심청이
                     	↓
                       도메인
-            - View: 가상 테이블 생성(보안 목적), Sequence: 자동 증가 번호, Index: 검색 PL/SQL
+            - View: 가상 테이블 생성(보안 목적), Sequence: 자동 증가 번호, Index: 검색, PL/SQL
         - CREATE 데이터 저장 공간 생성
              -> CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE INDEX
              -> 제약조건, 데이터형, 키 설정 => 데이터베이스 모델링(정규화)
