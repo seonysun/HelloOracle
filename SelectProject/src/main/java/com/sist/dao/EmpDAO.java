@@ -29,11 +29,12 @@ import java.sql.*;
  *      | 커서위치 (결과값 저장한 직후 커서 위치는 데이터 바깥 -> 데이터 안쪽으로 옮겨서 읽어야 함)
  */
 public class EmpDAO {
-	private Connection conn;
-	private PreparedStatement ps;
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	private Connection conn; //오라클 연결
+	private PreparedStatement ps; //SQL 문장 전송
+	private final String URL="jdbc:oracle:thin:@localhost:1521:XE"; //오라클 주소 연결
 	private static EmpDAO dao;
 			//싱글턴패턴(메모리 한개만 생성) -> 재사용 -> 메모리 누수현상(사용하지 않는 메모리 존재) 방지
+	//드라이버 등록
 	public EmpDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,28 +46,34 @@ public class EmpDAO {
 			dao=new EmpDAO();
 		return dao;
 	}
+	//오라클 연결
 	public void getConnection() {
 		try {
 			conn=DriverManager.getConnection(URL,"hr","happy");
 		} catch(Exception ex) {}
 	}
+	//오라클 해제
 	public void disConnection() {
 		try {
 			if(ps!=null) ps.close();
 			if(conn!=null) conn.close();
 		} catch(Exception ex) {}
 	}
-	//데이터출력
+	//기능_데이터출력
 	public ArrayList<EmpVO> empListData(){
 		ArrayList<EmpVO> list=new ArrayList<EmpVO>();
 		try {
 			getConnection();
+			//SQL 문장 제작
 			String sql="SELECT empno,ename,job,mgr,hiredate,sal,comm,emp.deptno,dname,loc,grade "
 					+"FROM emp,dept,salgrade "
 					+"WHERE emp.deptno=dept.deptno "
 					+"AND sal BETWEEN losal AND hisal";
+			//SQL 문장 전송
 			ps=conn.prepareStatement(sql);
+			//실행 결과 수신
 			ResultSet rs=ps.executeQuery();
+			//결과값 ArrayList에 저장
 			while(rs.next()) {
 				EmpVO vo=new EmpVO();
 				vo.setEmpno(rs.getInt(1));

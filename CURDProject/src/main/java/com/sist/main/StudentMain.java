@@ -2,7 +2,7 @@ package com.sist.main;
 import java.util.*;
 import com.sist.dao.*;
 
-public class UserMain {
+public class StudentMain {
 
 	public static void main(String[] args) {
         Scanner scan=new Scanner(System.in);
