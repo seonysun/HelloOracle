@@ -2,7 +2,7 @@ package com.sist.main;
 import java.util.*;
 import com.sist.dao.*;
 
-public class MainClass {
+public class EmpMain {
 	public static void main(String[] args) {
 		EmpDAO dao=EmpDAO.newInstance(); //싱글턴 객체 생성
 		

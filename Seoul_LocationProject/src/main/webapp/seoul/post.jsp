@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR" import="java.util.*,com.sist.dao.*"%>
 <%
     LocationDAO dao=new LocationDAO();
-    ArrayList<ZipcodeVO> list=dao.postfind();
+    ArrayList<ZipcodeVO> list=dao.postFind();
 %>
 <!DOCTYPE html>
 <html>

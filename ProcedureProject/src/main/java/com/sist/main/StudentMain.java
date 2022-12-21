@@ -24,8 +24,6 @@ public class StudentMain {
 		StudentDAO dao=new StudentDAO();
 		dao.studentInsert(vo);
 		System.out.println("======== 저장 완료!");
-		
-		
 
 	}
 

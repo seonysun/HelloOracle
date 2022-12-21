@@ -37,13 +37,15 @@ public class MemberDAO {
 		String result="";
 		try {
 			getConnection();
-			//SQL 문장 제작, 전송
+			//SQL 문장 제작
 			String sql="SELECT COUNT(*) FROM member WHERE id='"+id+"'";
 															//오라클 문법이므로 '' 줘야 함
 						//해당되는 id 가진 member의 갯수 찾기
+			//오라클 전송
 			ps=conn.prepareStatement(sql);
 			//실행결과 저장
 			ResultSet rs=ps.executeQuery();
+			//결과값 받기
 			rs.next();
 			int count=rs.getInt(1);
 			if(count==0) {
@@ -61,8 +63,6 @@ public class MemberDAO {
 					result=name;
 				else result="NOPWD";
 			}
-			//오라클 전송
-			//결과값 받기
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		} finally {

@@ -9,15 +9,23 @@ public class LocationDAO {
 	private PreparedStatement ps; 
 	//DBMS(오라클) 프로그램 연결
 	private final String URL="jdbc:oracle:thin:@localhost:1521:XE"; 
-							//java database connection -> DBMS(ex.oracle)의 드라이버 연결하는 라이브러리
-							//thin 드라이브 : 연결만 하는 드라이브
-							//XE : 오라클 데이터베이스 폴더 이름
+							//jdbc:업체명:드라이버종류:@IP:PORT:데이터베이스명
+							/*
+							java database connection -> DBMS(ex.oracle)의 드라이버 연결하는 라이브러리
+							thin 드라이브 : 연결만 하는 드라이브
+							XE : 오라클 데이터베이스 폴더 이름
+							*/
 	//드라이버 등록 :드라이버가 소프트웨어 형식(클래스)으로 등록됨 -> 한번만 실행
 	public LocationDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 											//대소문자 구분 주의
-			//리플렉션 : 클래스의 모든 정보 읽어서 메모리 할당, 멤버변수/메소드 제어
+			/*
+			Class.forName : 클래스 정보 읽어옴
+				- 리플렉션 : 클래스의 모든 정보 읽어서 메모리 할당, 멤버변수/메소드 제어
+				- 1) 메모리 할당 2) 메소드 호출 3) 변수 초기화..
+				- 등록 : 패키지명.클래스명
+			*/
 		} catch(Exception ex) {}
 	}
 	//오라클 연결
@@ -31,7 +39,7 @@ public class LocationDAO {
 		try {
 			//통신 종료
 			if(ps!=null) ps.close();
-			//conn exit()
+			//연결 종료; conn exit()
 			if(conn!=null) conn.close();
 		} catch(Exception ex) {}
 	}
@@ -75,7 +83,7 @@ public class LocationDAO {
 		}
 		return list;
 	}
-	public ArrayList<ZipcodeVO> postfind(){
+	public ArrayList<ZipcodeVO> postFind(){
 		ArrayList<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
 		try {
 			getConnection();
@@ -100,5 +108,52 @@ public class LocationDAO {
 			disConnection();
 		}
 		return list;
+	}
+	public ArrayList<ZipcodeVO> postFind(String dong){
+		ArrayList<ZipcodeVO> list=new ArrayList<ZipcodeVO>();
+		try {
+			getConnection();
+			String sql="SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
+					+ "FROM zipcode "
+					+ "WHERE dong LIKE '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, dong);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				ZipcodeVO vo=new ZipcodeVO();
+				vo.setZipcode(rs.getString(1));
+				vo.setSido(rs.getString(2));
+				vo.setGugun(rs.getString(3));
+				vo.setDong(rs.getString(4));
+				vo.setBunji(rs.getString(5));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return list;
+	}
+	public int postCount(String dong) {
+		int count=0;
+		try {
+			getConnection();
+			String sql="SELECT COUNT(*) "
+					+ "FROM zipcode "
+					+ "WHERE dong LIKE '%'||?||'%'";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, dong);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			count=rs.getInt(1);
+			rs.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return count;
 	}
 }

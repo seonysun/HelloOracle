@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="com.sist.dao.*,java.util.*"%>
 <%
-    // 데이터를 가지고 온다 => 자바 
     LocationDAO dao=new LocationDAO();
     ArrayList<LocationVO> list=dao.locationListData();
 %>
@@ -40,7 +39,7 @@ h1{
 			        </div>
 			      </a>
 			    </div>
-			  </div>
+			</div>
      <%
         }
      %>

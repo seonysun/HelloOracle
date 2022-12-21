@@ -29,7 +29,7 @@ public class FoodDAO {
 			getConnection();
 			String sql="SELECT fno,name,poster,num "
 					+ "FROM (SELECT fno,name,poster,rownum as num "
-					+ "FROM (SELECT fno,name,poster "
+					+ "FROM (SELECT /*+ INDEX_ASC(food_location pk_food_location)*/ fno,name,poster "
 					+ "FROM food_location ORDER BY fno)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
@@ -40,6 +40,7 @@ public class FoodDAO {
 		
 			ps.setInt(1, start);
 			ps.setInt(2, end);
+			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				FoodVO vo=new FoodVO();

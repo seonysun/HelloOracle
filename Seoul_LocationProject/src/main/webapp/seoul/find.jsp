@@ -4,7 +4,7 @@
     request.setCharacterEncoding("EUC-KR");
     String dong=request.getParameter("dong");
     ArrayList<ZipcodeVO> list=null;
-    ZipcodeDAO dao=new ZipcodeDAO();
+    LocationDAO dao=new LocationDAO();
     int count=0;
     if(dong!=null){
     	list=new ArrayList<ZipcodeVO>();
