@@ -14,6 +14,7 @@
 	//3. SQL 데이터 받기
 	ArrayList<FoodVO> list=dao.foodListData(curpage);
 	//4. HTML로 출력
+	request.setAttribute("list", list);
 	%>
 <!DOCTYPE html>
 <html>
