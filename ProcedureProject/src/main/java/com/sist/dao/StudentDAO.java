@@ -47,7 +47,7 @@ public class StudentDAO {
 		ArrayList<StudentVO> list=new ArrayList<StudentVO>();
 		try {
 			getConnection();
-			String sql="{CALL studentLisrData(?)}";
+			String sql="{CALL studentListData(?)}";
 			cs=conn.prepareCall(sql);
 			cs.registerOutParameter(1, OracleTypes.CURSOR);
 									//오라클 데이터형과 동일한 타입 생성
