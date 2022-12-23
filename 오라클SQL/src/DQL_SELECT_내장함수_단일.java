@@ -1,54 +1,18 @@
 /*
-1. SELECT
-    1) 형식(문법사항)
-        SELECT * | 컬럼명, 컬럼명
-        FROM 테이블명
-        [ WHERE : 조건
-          GROUP BY 컬럼명/함수 : 그룹별 처리
-          HAVING 그룹함수 : 그룹조건
-          ORDER BY 컬럼명/함수 ASC/DESC : 정렬 ]
-    2) 연산자 : 조건 검색
-        - 산술연산자 : +, -, *, /
-            - 산술연산자 사용시 자동으로 숫자로 변환됨 TO_NUMBER
-            - 정수/정수=실수
-        - 비교연산자(*) : =, <>, !=, ^=, <, >, <=, >=
-            cf. JavaScript : ===, !==
-        - 논리연산자(*) : AND, OR
-            cf. || : 문자열 결합, & : scanner(입력값 받기)
-        - IN : OR 여러개일 때
-        - NOT : 부정연산자
-            NOT IN, NOT BETWEEN, NOT LIKE
-        - NULL : 모든 연산 수행 불가 -> IS NULL / IS NOT NULL
-            - NVL() : NULL값 대체
-        - BETWEEN AND(*) : 기간, 범위
-        - LIKE(*) : 유사 문자열 검색
-            - % : 글자수와 관계 없음
-                  %A% : A 포함
-                  %A : A로 끝남
-                  A% : A로 시작
-            - _ : 1글자
-            - REGEXP_LIKE : 정규식
-    3) 내장함수 : 원하는 데이터 추출, 오라클 지원 함수
+1. 내장함수
+    - 오라클 지원 함수
         - 단일행함수 : 한줄 단위로 처리
         - 집합행함수 : 컬럼 단위로 처리
-       사용자 정의 함수
-    4) 데이터형 : 숫자형, 문자형(''), 날짜형('')
-    5) 문자열 결합 : ||
-    6) 컬럼명이나 테이블명 긴 경우 별칭 사용 : "", as
-    7) 중복 없는 데이터 추출 : DISTINCT
-    8) JOIN : 오라클 조인, ANSI 조인
-        -> SELECT만 가능
-    9) SubQuery(*) : WHERE, 테이블 대신, 컬럼대신
-        -> SELECT,INSERT,UPDATE,DELETE 모두 가능
-
-2. 내장함수
-    - 함수 : 데이터 제어 -> 데이터형에 따라 분류
-    - FUNCTION : 리턴형이 있는 함수 
-                ex. CREATE FUNCTION RETURN NUMBER
-      PROCEDURE : 리턴형이 없는 함수
-                ex. CREATE PROCEDURE
+    cf. 사용자 정의 함수
+        - FUNCTION : 리턴형이 있는 함수 
+            ex. CREATE FUNCTION RETURN NUMBER
+        - PROCEDURE : 리턴형이 없는 함수
+            ex. CREATE PROCEDURE
+            
     1) 단일행함수 : 한줄씩 처리(ROW 단위)
-        - 데이터형(문자, 숫자, 날짜, 기타)에 맞게 제작된 함수 지원
+        - 함수 : 데이터 제어 
+                -> 데이터형에 따라 분류
+                -> 데이터형(문자, 숫자, 날짜, 기타)에 맞게 제작된 함수 지원
         (1) 문자함수(String)
             - 변환함수
                 - UPPER(문자열) : 대문자변환

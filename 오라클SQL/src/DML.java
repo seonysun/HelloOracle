@@ -5,7 +5,6 @@
               기능 1개에 SQL 문장 여러개 수행 가능 
                   ex. 상세보기 기능> Update(조회수 증가), SELECT(데이터 읽기)
     1) INSERT : 데이터 추가 
-        - INSERT ALL
         - 모든 컬럼에 데이터 추가
             - INSERT INTO table_name VALUES(값..)
             - 테이블의 컬럼 갯수와 값 갯수, 데이터형 동일해야 함
@@ -14,6 +13,9 @@
             - 지정한 컬럼 갯수와 값 갯수, 데이터형 동일해야 함
             - DEFAULT 있는 경우 주로 사용
         - 제약조건에 맞는 데이터 추가
+            - INSERT ALL 
+              WHEN 조건 THEN
+              INTO 테이블명 VALUES(값..) 
     2) UPDATE : 데이터 수정
         - UPDATE table_name SET
           컬럼명=값..
