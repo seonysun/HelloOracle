@@ -2,8 +2,8 @@
 5. 인덱스
     - 빠른 검색, 접근 가능하도록 만든 데이터 구조
         -> SQL 문장 처리 속도 향상(최적화)
-           (ORDER BY의 속도 저하 보완)
-    - 투플의 키값 위치(rowid) 저장
+           (ORDER BY 속도 저하 보완)
+    - 투플의 키값 위치(RowId) 저장
         -> 추가 저장 공간 필요, 메모리 많이 소모
         -> B-tree 형태로 저장
     - 테이블 하나당 여러개 생성 가능(단일/여러 컬럼 대상)
@@ -17,10 +17,12 @@
         - 생성되지 않는 경우
             - INSERT, UPDATE, DELETE가 많은 경우
     2) 형식
-        - 생성 : CREATE INDEX 인덱스명 
-                ON 테이블명(컬럼명 ASC|DESC..)
-        - 수정 : ALTER INDEX 인덱스명
-                [ON 테이블명(컬럼명)] 
+        - 생성 : CREATE [REVERSE][UNIQUE] INDEX 인덱스명 
+                ON 테이블명(컬럼명 [ASC|DESC]..)
+                - REVERSE : 역순으로 인덱스 생성
+                - UNIQUE : 컬럼값의 중복이 없는 유일한 인덱스 생성
+        - 수정 : ALTER [REVERSE][UNIQUE] INDEX 인덱스명
+                [ON 테이블명(컬럼명)]
                 REBUILD
         - 삭제 : DROP INDEX 인덱스명
         - 정렬
@@ -38,7 +40,7 @@ SELECT * FROM emp WHERE ename>='H';
 CREATE INDEX idx_emp_sal ON emp(sal);
 SELECT * FROM emp WHERE sal>0;
 
-SELECT title FROM seoul_hotel ORDER BY title;
+SELECT title FROM seoul_hotel ORDER BY no;
 SELECT /*+ INDEX_ASC(seoul_hotel sh_no_pk) */ title FROM seoul_hotel;
 
 CREATE INDEX idx_sh_title ON seoul_hotel(title);

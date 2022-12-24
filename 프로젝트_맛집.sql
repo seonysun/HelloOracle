@@ -7,9 +7,9 @@ CREATE TABLE project_member(
     birth VARCHAR2(15) CONSTRAINT pm_birth_nn NOT NULL,
     email VARCHAR2(50),
     post VARCHAR2(7) CONSTRAINT pm_post_nn NOT NULL,
-    addr1 VARCHAR2(200)  CONSTRAINT pm_addr1_nn NOT NULL,
+    addr1 VARCHAR2(200) CONSTRAINT pm_addr1_nn NOT NULL,
     addr2 VARCHAR2(200),
-    phone VARCHAR2(20)  CONSTRAINT pm_phone_nn NOT NULL,
+    phone VARCHAR2(20) CONSTRAINT pm_phone_nn NOT NULL,
     content CLOB,
     admin CHAR(1) DEFAULT 'n',
     regdate DATE DEFAULT SYSDATE,
@@ -137,9 +137,9 @@ CREATE TABLE project_reserve_time(
 );
 CREATE TABLE project_reserve_date(
     dno NUMBER,
-    rdate NUMBER CONSTRAINT prd_rdate_nn NOT NULL,
+    rdate NUMBER CONSTRAINT prd_date_nn NOT NULL,
     rtime VARCHAR2(20) CONSTRAINT prd_time_nn NOT NULL,
-    CONSTRAINT prd_tno_pk PRIMARY KEY(dno)
+    CONSTRAINT prd_dno_pk PRIMARY KEY(dno)
 );
 CREATE TABLE project_reserve(
     rno NUMBER,
@@ -180,12 +180,12 @@ CREATE TABLE project_recipe_detail(
     content CLOB CONSTRAINT prd_content_nn NOT NULL,
     chef_name VARCHAR2(100) CONSTRAINT prd_cn_nn NOT NULL,
     chef_poster VARCHAR2(260) CONSTRAINT prd_cp_nn NOT NULL,
+    chef_email VARCHAR2(100) CONSTRAINT prd_ce_nn NOT NULL,
     info1 VARCHAR2(20) CONSTRAINT prd_info1_nn NOT NULL,
     info2 VARCHAR2(20) CONSTRAINT prd_info2_nn NOT NULL,
     info3 VARCHAR2(20) CONSTRAINT prd_info3_nn NOT NULL,
     food_data CLOB CONSTRAINT prd_fd_nn NOT NULL,
     food_make CLOB CONSTRAINT prd_fm_nn NOT NULL,
-    chef_email VARCHAR2(100) CONSTRAINT prd_ce_nn NOT NULL,
     hashtag CLOB,
     CONSTRAINT prd_rno_fk FOREIGN KEY(rno)
         REFERENCES project_recipe(rno)
@@ -217,6 +217,7 @@ CREATE TABLE project_recipe_goods(
     gno NUMBER,
     cno NUMBER,
     goods_name VARCHAR2(1000) CONSTRAINT prg_name_nn NOT NULL,
+    goods_poster VARCHAR2(60) CONSTRAINT prg_poster_nn NOT NULL,
     goods_content VARCHAR2(4000) CONSTRAINT prg_content_nn NOT NULL,
     goods_price NUMBER CONSTRAINT prg_price_nn NOT NULL,
     goods_percent NUMBER CONSTRAINT prg_per_nn NOT NULL,
@@ -226,7 +227,6 @@ CREATE TABLE project_recipe_goods(
     jjim_count NUMBER DEFAULT 0,
     like_count NUMBER DEFAULT 0,
     hit NUMBER DEFAULT 0,
-    goods_poster VARCHAR2(60) CONSTRAINT prg_poster_nn NOT NULL,
     CONSTRAINT prg_gno_pk PRIMARY KEY(gno),
     CONSTRAINT prg_cno_fk FOREIGN KEY(cno)
         REFERENCES project_goods_category(cno)
@@ -320,7 +320,7 @@ CREATE TABLE project_all_like(
     cate_no NUMBER,
     no NUMBER,
     id VARCHAR2(20),
-    CONSTRAINT pal_jno_pk PRIMARY KEY(lno),
+    CONSTRAINT pal_lno_pk PRIMARY KEY(lno),
     CONSTRAINT pal_id_fk FOREIGN KEY(id)
         REFERENCES project_member(id)
 );

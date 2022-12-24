@@ -5,8 +5,6 @@
         -> 중간 번호 삭제 시 번호 수정 없음, 무조건 증가
     cf. 중복 불가한 데이터 : 테이블명, 컬럼명, 뷰명, 시퀀스명, 제약조건명
     1) 키워드
-        - MAXVALUE : 최종값
-        - MINVALUE : 시작값
         - START WITH : 시작 위치 설정
             ex. START WITH 100 -> 100부터 시작
         - INCREMENT BY : 증가 간격 설정
@@ -18,16 +16,18 @@
         - CYCLE / NOCYCLE
             - 주로 NOCYCLE 사용
             - CYCLE : 설정된 범위가 모두 사용되었을 경우 다시 처음부터 시작
-        - 현재값 읽기 : CURRVAL
-          다음값 읽기 : NEXTVAL
+        - MAXVALUE : 최종값
+          MINVALUE : 시작값
+        - CURRVAL : 현재값 읽기
+          NEXTVAL : 다음값 읽기
     2) 사용방법
         - 생성
             CREATE SEQUENCE seq_name
             START WITH num
             INCREMENT BY num
             NOCACHE
-            NOCYCLE
-        - 삭제 : DROP SEQUENCE seq_name
+            NOCYCLE;
+        - 삭제 : DROP SEQUENCE seq_name;
         cf. 시퀀스 구분(이름주기) : 테이블명_컬럼명_seq;
         
 cf. 데이터 정형화
