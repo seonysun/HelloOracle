@@ -127,7 +127,7 @@ FROM (SELECT empno,ename,job,dname,loc
 SELECT empno,ename,job,dname,loc
 FROM (SELECT empno,ename,job,
         (SELECT dname FROM dept WHERE deptno=emp.deptno) dname,
-        (SELECT loc FROM dept WHERE deprno=emp.deptno) loc
+        (SELECT loc FROM dept WHERE deptno=emp.deptno) loc
         FROM emp);
     --rownum
 SELECT empno,ename,job,hiredate,sal,rownum

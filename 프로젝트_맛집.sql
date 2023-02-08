@@ -148,7 +148,7 @@ CREATE TABLE project_reply(
     depth NUMBER DEFAULT 0,
     CONSTRAINT pr_rno_pk PRIMARY KEY(rno),
     CONSTRAINT pr_bno_fk FOREIGN KEY(bno)
-        REFERENCES project_board(bno),
+        REFERENCES project_freeboard(no),
     CONSTRAINT pr_id_fk FOREIGN KEY(id)
         REFERENCES project_member(id)
 );
@@ -241,31 +241,30 @@ CREATE TABLE project_reserve_time(
 CREATE TABLE project_reserve_date(
     dno NUMBER,
     rdate NUMBER CONSTRAINT prd_date_nn NOT NULL,
-    rtime VARCHAR2(20) CONSTRAINT prd_time_nn NOT NULL,
+    rtime VARCHAR2(100) CONSTRAINT prd_time_nn NOT NULL,
     CONSTRAINT prd_dno_pk PRIMARY KEY(dno)
 );
 CREATE TABLE project_reserve(
     rno NUMBER,
     fno NUMBER,
     id VARCHAR2(20),
-    rdate VARCHAR2(20) CONSTRAINT pres_rdate_nn NOT NULL, 
-    rtime VARCHAR2(20) CONSTRAINT pres_rtime_nn NOT NULL,
+    rdate VARCHAR2(100) CONSTRAINT pres_rdate_nn NOT NULL, 
+    rtime VARCHAR2(100) CONSTRAINT pres_rtime_nn NOT NULL,
     inwon NUMBER,
     reserve_no VARCHAR2(20) CONSTRAINT pres_rno_nn NOT NULL,
     ok CHAR(1),
     regdate DATE DEFAULT SYSDATE,
     CONSTRAINT pres_rno_pk PRIMARY KEY(rno),
-    CONSTRAINT pres_fno_fk FOREIGN KEY(fno)
-        REFERENCES project_food(fno),
     CONSTRAINT pres_id_fk FOREIGN KEY(id)
         REFERENCES project_member(id),
     CONSTRAINT pres_inwon_ck CHECK(inwon>0)
 );
 CREATE TABLE project_recipe(
     rno NUMBER,
-    title VARCHAR2(500) CONSTRAINT prcp_title_nn NOT NULL,
+    title VARCHAR2(1000) CONSTRAINT prcp_title_nn NOT NULL,
     poster VARCHAR2(260) CONSTRAINT prcp_poster_nn NOT NULL,
-    chef VARCHAR2(100) CONSTRAINT prcp_chef_nn NOT NULL,
+    chef VARCHAR2(200) CONSTRAINT prcp_chef_nn NOT NULL,
+    link CLOB,
     hit NUMBER DEFAULT 0,
     jjim_count NUMBER DEFAULT 0,
     like_count NUMBER DEFAULT 0,
@@ -374,6 +373,21 @@ CREATE TABLE project_seoul(
     CONSTRAINT ps_cno_fk FOREIGN KEY(cno)
         REFERENCES project_seoul_category(cno)
 );
+CREATE TABLE project_freeBoard(
+    no NUMBER,
+    name VARCHAR2(34) CONSTRAINT pfb_name_nn NOT NULL,
+    subject VARCHAR2(1000) CONSTRAINT pfb_sub_nn NOT NULL,
+    content CLOB CONSTRAINT pfb_cont_nn NOT NULL,
+    pwd VARCHAR2(10) CONSTRAINT pfb_pwd_nn NOT NULL,
+    regdate DATE DEFAULT SYSDATE,
+    hit NUMBER DEFAULT 0,
+    CONSTRAINT pfb_no_pk PRIMARY KEY(no)
+);
+CREATE SEQUENCE pfb_no_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE
+    NOCACHE;
 CREATE TABLE project_replyBoard(
     no NUMBER,
     name VARCHAR2(34) CONSTRAINT prb_name_nn NOT NULL,
@@ -439,4 +453,9 @@ CREATE TABLE project_all_reply(
     CONSTRAINT par_id_fk FOREIGN KEY(id)
         REFERENCES project_member(id)
 );
+CREATE SEQUENCE par_rno_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE
+    NOCACHE;
 SELECT * FROM tab;

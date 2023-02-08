@@ -39,7 +39,6 @@
                     커서명%NOTFOUND : 데이터가 없는 경우
                     커서명%FOUND : 데이터가 있는 경우
                     커서명%COUNT
-            커서명 IN 받는변수명
             - 사용 순서
                 1. 커서 설정(정의)
                     CURSOR 커서명 IS SELECT~
