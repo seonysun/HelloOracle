@@ -6,6 +6,7 @@
  * 
  * 2. Multi Thread : 비동기화
  * 		- A와 B 번갈아가며 동시에 동작
+ * 		- 2개가 세트로 한턴씩 반복되지만 한턴 내에서 순서가 정해져있지는 않음
  * */
 
 class MultiThread extends Thread{
